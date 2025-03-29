@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers for Dasha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap');
+        
+        :root {
+            --pink: #ffb6c1;
+            --light-pink: #ffd1dc;
+            --dark-pink: #db7093;
+            --white: #fff8f8;
+            --green: #77dd77;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: #555;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--pink), var(--light-pink));
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .header-subtitle {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease;
+        }
+        
+        /* Floating flowers */
+        .flower {
+            position: absolute;
+            opacity: 0.7;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .flower-1 {
+            top: 10%;
+            left: 5%;
+            font-size: 2rem;
+            color: var(--white);
+            animation-delay: 0s;
+        }
+        
+        .flower-2 {
+            top: 70%;
+            left: 10%;
+            font-size: 3rem;
+            color: var(--dark-pink);
+            animation-delay: 1s;
+        }
+        
+        .flower-3 {
+            top: 30%;
+            right: 8%;
+            font-size: 2.5rem;
+            color: var(--white);
+            animation-delay: 0.5s;
+        }
+        
+        .flower-4 {
+            top: 75%;
+            right: 5%;
+            font-size: 1.8rem;
+            color: var(--dark-pink);
+            animation-delay: 1.5s;
+        }
+        
+        /* Main content */
+        .intro-section {
+            text-align: center;
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .highlight {
+            color: var(--dark-pink);
+            font-weight: bold;
+        }
+        
+        /* Flower grid */
+        .flower-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px 0;
+        }
+        
+        .flower-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .flower-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .flower-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .flower-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .flower-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--dark-pink);
+            margin-bottom: 10px;
+        }
+        
+        .flower-meaning {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        /* Message section */
+        .message-section {
+            background: linear-gradient(135deg, var(--light-pink), var(--pink));
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .message-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--dark-pink);
+            margin-bottom: 20px;
+        }
+        
+        .message-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--dark-pink);
+        }
+        
+        /* Gallery */
+        .gallery-section {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--dark-pink);
+            margin-bottom: 40px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-pink);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: transform 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--dark-pink);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(219, 112, 147, 0.4);
+        }
+        
+        .btn:hover {
+            background-color: white;
+            color: var(--dark-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(219, 112, 147, 0.6);
+        }
+        
+        /* Random floating petals */
+        .petal {
+            position: fixed;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0.8;
+            animation: falling linear infinite;
+        }
+        
+        @keyframes falling {
+            0% {
+                transform: translateY(-10%) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1rem;
+            }
+            
+            .flower-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating petals -->
+    <div id="petals-container"></div>
+    
+    <header>
+        <div class="container">
+            <i class="fas fa-spa flower flower-1"></i>
+            <i class="fas fa-spa flower flower-2"></i>
+            <i class="fas fa-spa flower flower-3"></i>
+            <i class="fas fa-spa flower flower-4"></i>
+            <h1>Для Даши</h1>
+            <p class="header-subtitle">Сад цветов, такой же прекрасный, как ты</p>
+            <div style="height: 20px;"></div>
+            <a href="#message" class="btn">Специальное Письмо</a>
+        </div>
+    </header>
+    
+    <section class="intro-section">
+        <div class="container">
+            <p class="intro-text">Дорогая <span class="highlight">Даша</span>, как каждый цветок в этом саду уникален и особенен, так же уникальна и особенна ты. Эти цветы посвящены тебе, потому что ты приносишь в мир столько же радости и красоты, сколько и они. Пусть они напоминают тебе о том, какая ты замечательная.</p>
+        </div>
+    </section>
+    
+    <section class="container">
+        <h2 class="section-title">Цветы для тебя</h2>
+        <div class="flower-grid">
+            <div class="flower-card">
+                <img src="http://goldenvalleyplants.co.uk/wp-content/uploads/2023/12/Rose-Rosanna_flower-600x400.jpg" alt="Rose" class="flower-image">
+                <div class="flower-info">
+                    <h3 class="flower-name">Розы</h3>
+                    <p class="flower-meaning">Символизирует любовь и страсть, роза напоминает мне о тепле, которое ты приносишь в каждую комнату, куда бы ты ни вошла.</p>
+                    <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Нравится</button>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="https://windflowerflorist.com/cdn/shop/articles/Tulips_600x.jpg?v=1689779801" alt="Tulip" class="flower-image">
+                <div class="flower-info">
+                    <h3 class="flower-name">Тюльпан</h3>
+                    <p class="flower-meaning">Своей идеальной симметрией тюльпан символизирует элегантность и грацию — качества, которых у тебя в изобилии.</p>
+                    <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Нравится</button>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="https://cdn.shopify.com/s/files/1/0557/8532/4580/files/sunflower-wedding-bouquet-ideas-to-brighten-your-big-day_600x600.jpg?v=1692946757" alt="Sunflower" class="flower-image">
+                <div class="flower-info">
+                    <h3 class="flower-name">Подсолнух</h3>
+                    <p class="flower-meaning">Подобно тому, как подсолнух поворачивается к солнцу, люди тянутся к тебе за твоим лучезарным позитивом и яркой энергией.</p>
+                    <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Нравится</button>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="https://expressionsfloral.co.nz/wp-content/uploads/2017/11/Oriental-Lilies-Bouquet-Pink-600x400.jpg" alt="Lily" class="flower-image">
+                <div class="flower-info">
+                    <h3 class="flower-name">Лилия</h3>
+                    <p class="flower-meaning">Чистая и утонченная, лилия отражает твою неподвластную времени красоту и умиротворение, которое ты даришь окружающим.</p>
+                    <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Нравится</button>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="https://www.shutterstock.com/image-photo/bridal-bouquet-beautiful-pink-wedding-600nw-564720289.jpg" alt="Peony" class="flower-image">
+                <div class="flower-info">
+                    <h3 class="flower-name">Пион</h3>
+                    <p class="flower-meaning">Пышный и романтичный, пион символизирует процветание и удачу — пусть эти блага всегда сопровождают тебя.</p>
+                    <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Нравится</button>
+                </div>
+            </div>
+            
+            <div class="flower-card">
+                <img src="https://www.tresorpark.ca/cdn/shop/products/TB2G5l0aaagSKJjy0FhXXcrbFXa__47351261_grande.jpg?v=1523653401" alt="Orchid" class="flower-image">
+                <div class="flower-info">
+                    <h3 class="flower-name">Орхидея</h3>
+                    <p class="flower-meaning">Экзотическая и таинственная, орхидея символизирует силу и редкую красоту — точно так же, как твой уникальный дух.</p>
+                    <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Нравится</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="message-section" id="message">
+        <div class="container">
+            <div class="message-box">
+                <h2 class="message-title">Для Даши</h2>
+                <p class="message-content">
+                    Даша, я создал этот цветочный сад только для тебя, потому что ты заслуживаешь всей красоты в мире.<br><br>
+                    Подобно саду, ты привносишь в жизнь краски и радость. Твой смех — как аромат роз, твоя доброта расцветает, словно весенние цветы, а твоя сила тянется ввысь, как подсолнухи к небу.<br><br>
+                    Пусть эти цветы напоминают тебе, что тебя любят, тобой дорожат и восхищаются больше, чем могут выразить слова. Продолжай озарять мир своим прекрасным светом.
+                </p>
+                <p class="signature"><3</p>
+                
+                <div id="confetti-zone"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Цветочные воспоминания</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://st4.depositphotos.com/1001051/20874/i/450/depositphotos_208748786-stock-photo-flowers-planted-stripes-different-colors.jpg" alt="Flower Field" class="gallery-img">
+                    <div class="gallery-caption">Поле цветов, бесконечные, как твоя доброта.</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://cdn.accentuate.cloud/images/57624068264/BG-Bouquets-to-Carry-2021-05-14-Elopement-Wedding-Bouquet-600x400.jpeg?v=1655242724401" alt="Bouquet" class="gallery-img">
+                    <div class="gallery-caption">Бережно собранный букет, такой же, как не придумал</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://st2.depositphotos.com/1177973/11657/i/450/depositphotos_116577166-stock-photo-beautiful-girl-with-fresh-bouquet.jpg" alt="Girl with Flowers" class="gallery-img">
+                    <div class="gallery-caption">Красота, любующаяся красотой - ты и цветы</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+            </div>
+            <p>© 2025 Цветочный сад для Даши | Создан с любовью</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Create falling petals effect
+        function createPetals() {
+            const petalsContainer = document.getElementById('petals-container');
+            const petalCount = 20;
+            
+            for (let i = 0; i < petalCount; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement('div');
+                    petal.classList.add('petal');
+                    
+                    // Random petal shape and color
+                    const petalTypes = ['🌸', '🍃', '🌼'];
+                    const randomType = petalTypes[Math.floor(Math.random() * petalTypes.length)];
+                    petal.textContent = randomType;
+                    petal.style.color = Math.random() > 0.5 ? '#ffb6c1' : '#db7093';
+                    
+                    // Random size
+                    const size = Math.random() * 20 + 10;
+                    petal.style.fontSize = `${size}px`;
+                    
+                    // Random position
+                    petal.style.left = `${Math.random() * 100}%`;
+                    
+                    // Random animation duration
+                    const duration = Math.random() * 10 + 5;
+                    petal.style.animationDuration = `${duration}s`;
+                    
+                    petalsContainer.appendChild(petal);
+                    
+                    // Remove petal after animation completes
+                    setTimeout(() => {
+                        petal.remove();
+                    }, duration * 1000);
+                }, i * 1000);
+            }
+        }
+        
+        // Repeat petal creation
+        function startPetalAnimation() {
+            createPetals();
+            setInterval(createPetals, 20000);
+        }
+        
+        // Add Нравится button functionality
+        function setupНравитсяButtons() {
+            const НравитсяButtons = document.querySelectorAll('.btn');
+            НравитсяButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.textContent === 'Нравится') {
+                        this.innerHTML = '<i class="fas fa-heart"></i> Нравится!';
+                        this.style.backgroundColor = '#77dd77';
+                    } else {
+                        this.textContent = 'Нравится';
+                        this.style.backgroundColor = '';
+                    }
+                });
+            });
+        }
+        
+        // Add floating heart effect when clicking the message section
+        function addHeartEffect() {
+            const messageBox = document.querySelector('.message-box');
+            messageBox.addEventListener('click', function(e) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.position = 'absolute';
+                heart.style.left = `${e.clientX - 10}px`;
+                heart.style.top = `${e.clientY - 10}px`;
+                heart.style.color = '#db7093';
+                heart.style.fontSize = '20px';
+                heart.style.pointerEvents = 'none';
+                heart.style.animation = 'float 2s ease-in-out forwards';
+                
+                document.body.appendChild(heart);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            });
+        }
+        
+        // Initialize everything when the page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            startPetalAnimation();
+            setupНравитсяButtons();
+            addHeartEffect();
+            
+            // Animate elements as they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.flower-card, .gallery-item, .intro-text').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
